@@ -204,28 +204,31 @@ def main():
             print("Stored identifier updated to:", new_stored)
         
         # ------------------------------------------------------------
-        # 8. If new projects exist, build a text message and send an email.
+        # 8. Build an email body and send an email regardless of new projects.
         # ------------------------------------------------------------
         if new_projects:
             email_body = build_projects_text(new_projects)
-            print("Email body built:\n", email_body)
-            
-            # Email configuration for Mailjet:
-            sender_email = "khushiatrey011@gmail.com"
-            # Define multiple recipients as a list of dictionaries.
-            receiver_emails = [
-                {"Email": "khushi@truestate.in", "Name": "Khushi"},
-                {"Email": "kshitij@truestate.in", "Name": "Kshitij"}
-            ]
-            subject = "New RERA Projects Update"
-            
-            # Your Mailjet API credentials (replace with your own)
-            mailjet_api_key = "ecad4f02175cc06bb5af8c45b1ed11b0"
-            mailjet_api_secret = "05a81d3b2447bb0d73eb936fa680224e"
-            
-            # Send the email with the plain text content using Mailjet
-            send_email_with_mailjet_text(sender_email, receiver_emails, subject, email_body,
-                                         mailjet_api_key, mailjet_api_secret)
+        else:
+            email_body = "No new projects updated."
+        
+        print("Email body built:\n", email_body)
+        
+        # Email configuration for Mailjet:
+        sender_email = "khushiatrey011@gmail.com"
+        # Define multiple recipients as a list of dictionaries.
+        receiver_emails = [
+            {"Email": "khushi@truestate.in", "Name": "Khushi"},
+            {"Email": "kshitij@truestate.in", "Name": "Kshitij"}
+        ]
+        subject = "New RERA Projects Update"
+        
+        # Your Mailjet API credentials (replace with your own)
+        mailjet_api_key = "ecad4f02175cc06bb5af8c45b1ed11b0"
+        mailjet_api_secret = "05a81d3b2447bb0d73eb936fa680224e"
+        
+        # Send the email with the plain text content using Mailjet
+        send_email_with_mailjet_text(sender_email, receiver_emails, subject, email_body,
+                                     mailjet_api_key, mailjet_api_secret)
     
     except Exception as e:
         print("An error occurred:", e)
