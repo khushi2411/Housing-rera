@@ -14,7 +14,7 @@ floorplan = load_json("floorplan.json")
 
 # Get a set of all unique keys (project IDs) from all files
 all_keys = set()
-for d in [project_details, project_schedule, inventory, tower_data, floorplan]:
+for d in [project_details, inventory, tower_data, floorplan,project_schedule]:
     all_keys.update(d.keys())
 
 # Prepare the final consolidated dictionary
